@@ -18,6 +18,22 @@ class $AssetsIconsGen {
   /// File path: assets/icons/Setting.png
   AssetGenImage get setting => const AssetGenImage('assets/icons/Setting.png');
 
+  /// File path: assets/icons/back_icon.png
+  AssetGenImage get backIcon =>
+      const AssetGenImage('assets/icons/back_icon.png');
+
+  /// File path: assets/icons/calendar.png
+  AssetGenImage get calendar =>
+      const AssetGenImage('assets/icons/calendar.png');
+
+  /// File path: assets/icons/copy_icon.png
+  AssetGenImage get copyIcon =>
+      const AssetGenImage('assets/icons/copy_icon.png');
+
+  /// File path: assets/icons/discord_logo.png
+  AssetGenImage get discordLogo =>
+      const AssetGenImage('assets/icons/discord_logo.png');
+
   /// File path: assets/icons/heart.png
   AssetGenImage get heart => const AssetGenImage('assets/icons/heart.png');
 
@@ -27,17 +43,54 @@ class $AssetsIconsGen {
   /// File path: assets/icons/label.png
   AssetGenImage get label => const AssetGenImage('assets/icons/label.png');
 
+  /// File path: assets/icons/logo.png
+  AssetGenImage get logo => const AssetGenImage('assets/icons/logo.png');
+
+  /// File path: assets/icons/logout_icon.png
+  AssetGenImage get logoutIcon =>
+      const AssetGenImage('assets/icons/logout_icon.png');
+
   /// File path: assets/icons/notification.png
   AssetGenImage get notification =>
       const AssetGenImage('assets/icons/notification.png');
 
+  /// File path: assets/icons/printer_icon.png
+  AssetGenImage get printerIcon =>
+      const AssetGenImage('assets/icons/printer_icon.png');
+
+  /// File path: assets/icons/refresh_icon.png
+  AssetGenImage get refreshIcon =>
+      const AssetGenImage('assets/icons/refresh_icon.png');
+
+  /// File path: assets/icons/verified_icon.png
+  AssetGenImage get verifiedIcon =>
+      const AssetGenImage('assets/icons/verified_icon.png');
+
   /// List of all assets
-  List<AssetGenImage> get values =>
-      [search, setting, heart, home, label, notification];
+  List<AssetGenImage> get values => [
+        search,
+        setting,
+        backIcon,
+        calendar,
+        copyIcon,
+        discordLogo,
+        heart,
+        home,
+        label,
+        logo,
+        logoutIcon,
+        notification,
+        printerIcon,
+        refreshIcon,
+        verifiedIcon
+      ];
 }
 
 class $AssetsImagesGen {
   const $AssetsImagesGen();
+
+  /// File path: assets/images/Login.png
+  AssetGenImage get login => const AssetGenImage('assets/images/Login.png');
 
   /// File path: assets/images/blue_shoes.png
   AssetGenImage get blueShoes =>
@@ -68,6 +121,7 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
+        login,
         blueShoes,
         placeholderImage,
         retroShoes,

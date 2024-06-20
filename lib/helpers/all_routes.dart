@@ -1,12 +1,13 @@
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
+import 'package:price_comparison/features/authentication/presentation/login_screen.dart';
 import 'package:price_comparison/features/lebel/presentation/lebel_screen.dart';
+import 'package:price_comparison/features/search/presentation/product_details_screen.dart';
 import 'package:price_comparison/features/search/presentation/search_screen.dart';
 import 'package:price_comparison/features/setting/presentation/setting_screen.dart';
+import 'package:price_comparison/navigation_screen.dart';
 import '../features/home/presentation/home_screen.dart';
-
-
 
 final class Routes {
   static final Routes _routes = Routes._internal();
@@ -17,7 +18,9 @@ final class Routes {
   static const String search = '/search';
   static const String setting = '/setting';
   static const String lebel = '/lebel';
-  
+  static const String productDetails = '/product_details';
+  static const String login = '/login';
+  static const String navigationScreen = '/navigation_screen';
 }
 
 final class RouteGenerator {
@@ -33,25 +36,45 @@ final class RouteGenerator {
                 widget: const ScreenTitle(widget: HomeScreen()),
                 settings: settings)
             : CupertinoPageRoute(builder: (context) => const HomeScreen());
-            case Routes.search:
+      case Routes.search:
         return Platform.isAndroid
             ? _FadedTransitionRoute(
                 widget: const ScreenTitle(widget: SearchScreen()),
                 settings: settings)
             : CupertinoPageRoute(builder: (context) => const SearchScreen());
-            case Routes.lebel:
+      case Routes.lebel:
         return Platform.isAndroid
             ? _FadedTransitionRoute(
                 widget: const ScreenTitle(widget: LebelScreen()),
                 settings: settings)
             : CupertinoPageRoute(builder: (context) => const LebelScreen());
-            case Routes.setting:
+      case Routes.setting:
         return Platform.isAndroid
             ? _FadedTransitionRoute(
                 widget: const ScreenTitle(widget: SettingScreen()),
                 settings: settings)
             : CupertinoPageRoute(builder: (context) => const SettingScreen());
-      
+      case Routes.productDetails:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: const ScreenTitle(widget: ProductDetailsScreen()),
+                settings: settings)
+            : CupertinoPageRoute(
+                builder: (context) => const ProductDetailsScreen());
+      case Routes.login:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: const ScreenTitle(widget: LoginScreen()),
+                settings: settings)
+            : CupertinoPageRoute(builder: (context) => const LoginScreen());
+      case Routes.navigationScreen:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: const ScreenTitle(widget: NavigationScreen()),
+                settings: settings)
+            : CupertinoPageRoute(
+                builder: (context) => const NavigationScreen());
+
       // case Routes.webview:
       //   final args = settings.arguments as Map;
       //   return Platform.isAndroid

@@ -24,24 +24,29 @@ final class UIHelper {
 
   static Widget verticalSpaceSmall = SizedBox(height: _verticalSpaceSmall);
   static Widget verticalSpaceMedium = SizedBox(height: _verticalSpaceMedium);
-  static Widget verticalSpaceMediumLarge = SizedBox(height: _verticalSpaceMediumLarge);
-  static Widget verticalSpaceSemiLarge = SizedBox(height: _verticalSpaceSemiLarge);
+  static Widget verticalSpaceMediumLarge =
+      SizedBox(height: _verticalSpaceMediumLarge);
+  static Widget verticalSpaceSemiLarge =
+      SizedBox(height: _verticalSpaceSemiLarge);
   static Widget verticalSpaceLarge = SizedBox(height: _verticalSpaceLarge);
-  static Widget verticalSpaceExtraLarge = SizedBox(height: _verticalSpaceExtraLarge);
+  static Widget verticalSpaceExtraLarge =
+      SizedBox(height: _verticalSpaceExtraLarge);
 
   static Widget horizontalSpaceSmall = SizedBox(width: _horizontalSpaceSmall);
   static Widget horizontalSpaceMedium = SizedBox(width: _horizontalSpaceMedium);
-  static Widget horizontalSpaceSemiLarge = SizedBox(width: _horizontalSpaceSemiLarge);
+  static Widget horizontalSpaceSemiLarge =
+      SizedBox(width: _horizontalSpaceSemiLarge);
   static Widget horizontalSpaceLarge = SizedBox(width: _horizontalSpaceLarge);
 
   static Widget horizontalSpace(double width) => SizedBox(width: width);
   static Widget verticalSpace(double height) => SizedBox(height: height);
 
-  static double safePadding() => MediaQuery.of(NavigationService.context).padding.top;
+  static double safePadding() =>
+      MediaQuery.of(NavigationService.context).padding.top;
 
   static Widget customDivider() => Container(
-        height: .6.h,
-        color: AppColors.c000000.withOpacity(.3),
+        height: 1.h,
+        color: AppColors.c323232.withOpacity(1),
         width: double.infinity,
       );
   static double kDefaulutPadding() => 20.sp;

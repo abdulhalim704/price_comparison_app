@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:price_comparison/features/authentication/presentation/login_screen.dart';
 import 'package:provider/provider.dart';
 import '/helpers/all_routes.dart';
 import 'constants/custome_theme.dart';
@@ -35,17 +36,20 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     rotation();
     setInitValue();
-    return AnimateIfVisibleWrapper(
-      showItemInterval: const Duration(milliseconds: 150),
-      child: PopScope(
-        canPop: false,
-        onPopInvoked: (bool didPop) async {
-          showMaterialDialog(context);
-        },
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            return const UtillScreenMobile();
+    return MultiProvider(
+      providers: providers,
+      child: AnimateIfVisibleWrapper(
+        showItemInterval: const Duration(milliseconds: 150),
+        child: PopScope(
+          canPop: false,
+          onPopInvoked: (bool didPop) async {
+            showMaterialDialog(context);
           },
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              return const UtillScreenMobile();
+            },
+          ),
         ),
       ),
     );
@@ -81,7 +85,7 @@ class UtillScreenMobile extends StatelessWidget {
             },
             navigatorKey: NavigationService.navigatorKey,
             onGenerateRoute: RouteGenerator.generateRoute,
-            home: const Loading(),
+            home: const LoginScreen(),
           ),
         );
       },

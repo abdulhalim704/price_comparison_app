@@ -16,6 +16,24 @@ class DummySearchResult {
       {this.id, this.productImage, this.productSubTitle, this.title});
 }
 
+class DummyOrderHistory {
+  String? hours;
+  String? orderitem;
+  DummyOrderHistory({
+    this.hours,
+    this.orderitem,
+  });
+}
+
+List<DummyOrderHistory> orderHistoryData = [
+  DummyOrderHistory(hours: '24h',orderitem: '5'),
+  DummyOrderHistory(hours: '7d',orderitem: '15'),
+  DummyOrderHistory(hours: '30d',orderitem: '1543'),
+  DummyOrderHistory(hours: 'All',orderitem: '21543'),
+  
+
+];
+
 List<DummyCategoryData> dummyCetegoryData = [
   DummyCategoryData(id: '1', name: 'All'),
   DummyCategoryData(id: '2', name: 'Nike'),

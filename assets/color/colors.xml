@@ -12,7 +12,25 @@
   <color name="c1C1C1C">#FF1C1C1C</color>
   <color name="cFF3366">#FFFF3366</color>
   <color name="cB0B0B0">#FFB0B0B0</color>
-  
+  <color name="c676767">#FF676767</color>
+  <color name="c262626">#FF262626</color>
+  <color name="cB9B9B9">#FFB9B9B9</color>
+  <color name="c333333">#FF333333</color>
+  <color name="c171717">#FF171717</color>
+  <color name="c999999">#FF999999</color>
+  <color name="c929292">#FF929292</color>
+  <color name="c878787">#FF878787</color>
+  <color name="c5865F2">#FF5865F2</color>
+  <color name="c2D3B31">#FF2D3B31</color>
+  <color name="c49C26A">#FF49C26A</color>
+  <color name="c292929">#FF292929</color>
+  <color name="cAFAFAF">#FFAFAFAF</color>
+  <color name="c1B1B1B">#FF1B1B1B</color>
+  <color name="c323232">#FF323232</color>
+  <color name="c848688">#FF848688</color>
+  <color name="c2D2D2D">#FF2D2D2D</color>
+  <color name="c494949">#FF494949</color>
+  <color name="c233628">#FF233628</color>
 
 // yammyfood colors code
   <color name="allPrimaryColor">#FFF9500A</color>
