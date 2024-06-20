@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:price_comparison/helpers/all_routes.dart';
+import 'package:price_comparison/helpers/navigation_service.dart';
 import 'package:price_comparison/helpers/ui_helpers.dart';
 
 import '../../../common_widgets/app_bar_action_button.dart';
@@ -11,7 +13,7 @@ import '../../../gen/assets.gen.dart';
 import '../../../gen/colors.gen.dart';
 import '../widget/category_card.dart';
 import '../widget/search_product_card.dart';
-import '../widget/search_widget.dart';
+import '../../../common_widgets/search_widget.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -49,7 +51,7 @@ class _SearchScreenState extends State<SearchScreen> {
             Text('Search Product', style: TextFontStyle.headline20w400cfffff),
       ),
       body: ListView(
-        padding: EdgeInsets.all(UIHelper.kDefaulutPadding()),
+        padding: EdgeInsets.symmetric(horizontal: 16.w),
         children: [
           SearchWidget(searchController: _searchController),
           SizedBox(
@@ -101,6 +103,8 @@ class _SearchScreenState extends State<SearchScreen> {
                   productTitle: item.title,
                   productSubTitle: item.productSubTitle,
                   onFav: _onFav == index,
+                  onTap: () =>
+                      NavigationService.navigateTo(Routes.productDetails),
                 );
               },
             ),
