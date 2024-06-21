@@ -35,6 +35,7 @@ class _SearchScreenState extends State<SearchScreen> {
       appBar: AppBar(
         actions: [
           AppBarActionButton(
+              
               rightPadding: 5.w,
               containerColor: Colors.transparent,
               child: Image.asset(
