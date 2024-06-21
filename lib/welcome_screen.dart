@@ -15,7 +15,7 @@ final class WelcomeScreen extends StatelessWidget {
           SizedBox(
             height: 40.h,
           ),
-          Icon(Icons.favorite),
+          const Icon(Icons.favorite),
           // Image.asset(Assets.icons.splash2.path),
           SizedBox(
             height: 20.h,

@@ -4,7 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:price_comparison/features/authentication/presentation/login_screen.dart';
 import 'package:price_comparison/features/lebel/presentation/lebel_details_screen.dart';
 import 'package:price_comparison/features/lebel/presentation/lebels_screen.dart';
-import 'package:price_comparison/features/lebel/presentation/lebel_screen.dart';
+import 'package:price_comparison/features/notification/presentation/notification_screen.dart';
+
 import 'package:price_comparison/features/search/presentation/product_details_graph.dart';
 import 'package:price_comparison/features/search/presentation/product_details_screen.dart';
 import 'package:price_comparison/features/search/presentation/search_screen.dart';
@@ -26,6 +27,7 @@ final class Routes {
   static const String productDetailsGraph = '/product_details_graph';
   static const String login = '/login';
   static const String navigationScreen = '/navigation_screen';
+  static const String notification = '/notification_screen';
 }
 
 final class RouteGenerator {
@@ -67,7 +69,7 @@ final class RouteGenerator {
                 settings: settings)
             : CupertinoPageRoute(
                 builder: (context) => const ProductDetailsScreen());
-        case Routes.productDetailsGraph:
+      case Routes.productDetailsGraph:
         return Platform.isAndroid
             ? _FadedTransitionRoute(
                 widget: const ScreenTitle(widget: ProductDetailsGraphScreen()),
@@ -93,6 +95,13 @@ final class RouteGenerator {
                 widget: const ScreenTitle(widget: LebelScreen()),
                 settings: settings)
             : CupertinoPageRoute(builder: (context) => const LebelScreen());
+      case Routes.notification:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: const ScreenTitle(widget: NotificationScreen()),
+                settings: settings)
+            : CupertinoPageRoute(
+                builder: (context) => const NotificationScreen());
 
       // case Routes.webview:
       //   final args = settings.arguments as Map;

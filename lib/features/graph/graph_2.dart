@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
-import '../../../../gen/colors.gen.dart';
-
 class Graph2 extends StatelessWidget {
   Graph2({super.key});
 
