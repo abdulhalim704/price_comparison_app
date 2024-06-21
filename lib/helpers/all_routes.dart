@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:price_comparison/features/authentication/presentation/login_screen.dart';
 import 'package:price_comparison/features/lebel/presentation/lebel_screen.dart';
+import 'package:price_comparison/features/search/presentation/product_details_graph.dart';
 import 'package:price_comparison/features/search/presentation/product_details_screen.dart';
 import 'package:price_comparison/features/search/presentation/search_screen.dart';
 import 'package:price_comparison/features/setting/presentation/setting_screen.dart';
@@ -19,6 +20,7 @@ final class Routes {
   static const String setting = '/setting';
   static const String lebel = '/lebel';
   static const String productDetails = '/product_details';
+  static const String productDetailsGraph = '/product_details_graph';
   static const String login = '/login';
   static const String navigationScreen = '/navigation_screen';
 }
@@ -61,6 +63,13 @@ final class RouteGenerator {
                 settings: settings)
             : CupertinoPageRoute(
                 builder: (context) => const ProductDetailsScreen());
+        case Routes.productDetailsGraph:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: const ScreenTitle(widget: ProductDetailsGraphScreen()),
+                settings: settings)
+            : CupertinoPageRoute(
+                builder: (context) => const ProductDetailsGraphScreen());
       case Routes.login:
         return Platform.isAndroid
             ? _FadedTransitionRoute(

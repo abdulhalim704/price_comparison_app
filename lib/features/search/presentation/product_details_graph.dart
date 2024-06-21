@@ -1,8 +1,7 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:price_comparison/helpers/all_routes.dart';
+import 'package:price_comparison/features/graph/graph_1.dart';
+import 'package:price_comparison/features/graph/graph_2.dart';
 import 'package:price_comparison/helpers/navigation_service.dart';
 import 'package:price_comparison/helpers/toast.dart';
 import 'package:price_comparison/helpers/ui_helpers.dart';
@@ -15,15 +14,17 @@ import '../../../gen/colors.gen.dart';
 import '../../../providers/stock_alice_provider.dart';
 import '../widget/price_heading.dart';
 
-class ProductDetailsScreen extends StatefulWidget {
-  const ProductDetailsScreen({super.key});
+class ProductDetailsGraphScreen extends StatefulWidget {
+  const ProductDetailsGraphScreen({super.key});
 
   @override
-  State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
+  State<ProductDetailsGraphScreen> createState() =>
+      _ProductDetailsGraphScreenState();
 }
 
-class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
+class _ProductDetailsGraphScreenState extends State<ProductDetailsGraphScreen> {
   final String textToCopy = 'FD9749-400';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,28 +96,49 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               UIHelper.verticalSpace(5.h),
               OrderIdWidget(textToCopy: textToCopy),
               UIHelper.verticalSpace(10.h),
-              SizedBox(
-                height: 35.h,
-                child: ListView.separated(
-                  separatorBuilder: (context, index) {
-                    return SizedBox(
-                      width: 10.w,
-                    );
-                  },
-                  scrollDirection: Axis.horizontal,
-                  itemCount: orderHistoryData.length,
-                  itemBuilder: (context, index) {
-                    final item = orderHistoryData[index];
-                    return OrderHistoryChip(
-                      hours: item.hours,
-                      item: item.orderitem,
-                    );
-                  },
-                ),
+              Row(
+                children: [
+                  const Expanded(
+                      child: TitleDetailsUiItem(
+                    title: 'Lowest Ask',
+                    price: '129',
+                  )),
+                  UIHelper.horizontalSpace(5.w),
+                  const Expanded(
+                      child: TitleDetailsUiItem(
+                    title: 'Highest Bid',
+                    price: '197',
+                  )),
+                  UIHelper.horizontalSpace(5.w),
+                  const Expanded(
+                      child: TitleDetailsUiItem(
+                    title: 'Profit',
+                    price: '43',
+                    color: Colors.green,
+                  )),
+                ],
               ),
-              UIHelper.verticalSpace(18.h),
-              const PriceHeading(),
+              UIHelper.verticalSpace(30.w),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    height: 8.w,
+                    width: 8.w,
+                    decoration: const BoxDecoration(shape: BoxShape.circle, color: Color(0xFF5694D9),),
+                  ),
+                  Flexible(child: Text('8 US | Payouts | StockX', style: TextFontStyle.headline14w400c919191.copyWith(color: Colors.white),))
+                ],
+              ),
+              AspectRatio(
+                aspectRatio: 1.94,
+                child: Graph2(),
+              ),
               UIHelper.verticalSpace(10.h),
+              /// header of size date and price
+              SizeDatePriceHeader(),
+              UIHelper.verticalSpace(10.h),
+              /// details or body of size date and price
               ListView.separated(
                 separatorBuilder: (context, index) {
                   return SizedBox(
@@ -127,22 +149,12 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 shrinkWrap: true,
                 itemCount: 10,
                 itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: (){
-                      log('index is $index');
-                      NavigationService.navigateTo(Routes.productDetailsGraph);
-                    },
-                    child: PriceDetailsWidget(
-
-                      size: '5',
-                      subSize: '35.5',
-                      lowestAsk: '107€',
-                      subLowestAsk: '94.34€',
-                      bid: '65€',
-                      subBid: '32.85€',
-                      profit: '61.48€',
-                      color: colorChange(index),
-                    ),
+                  return SizePriceDetailsItemUi(
+                    size: 'US 9',
+                    time: '9:56 PM',
+                    date: 'Apr 22, 2024',
+                    price: '94.34€',
+                    color: colorChange(index),
                   );
                 },
               )
@@ -162,23 +174,85 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   }
 }
 
-class PriceDetailsWidget extends StatelessWidget {
-  String? size;
-  String? subSize;
-  String? lowestAsk;
-  String? subLowestAsk;
-  String? bid;
-  String? subBid;
-  String? profit;
+class SizeDatePriceHeader extends StatelessWidget {
+  const SizeDatePriceHeader({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 8.w),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8.r), border:  Border.all(color: AppColors.c1C1C1C)),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Text(
+            'Size',
+            style: TextFontStyle.headline14w500cfffff,
+          ),
+          Text(
+            'Lowest Ask',
+            style: TextFontStyle.headline14w500cfffff,
+          ),
+          Text(
+            'Highest Bid',
+            style: TextFontStyle.headline14w500cfffff,
+          ),
+          Text(
+            'Profit',
+            style: TextFontStyle.headline14w500cfffff,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+class TitleDetailsUiItem extends StatelessWidget {
+  final String title, price;
+  final Color? color;
+
+  const TitleDetailsUiItem(
+      {super.key, required this.title, required this.price, this.color});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(7),
+      decoration: BoxDecoration(
+        color: AppColors.c1C1C1C,
+        borderRadius: BorderRadius.circular(7.r),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            title,
+            style: TextFontStyle.headline14w400c919191,
+          ),
+          UIHelper.verticalSpace(2.w),
+          Text(
+            '€$price',
+            style: TextFontStyle.headline15w600cfffff
+                .copyWith(fontSize: 22.sp, color: color),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class SizePriceDetailsItemUi extends StatelessWidget {
+  String? size, date, time, price;
+
   Color? color;
-  PriceDetailsWidget({
+  SizePriceDetailsItemUi({
     this.size,
-    this.subSize,
-    this.lowestAsk,
-    this.subLowestAsk,
-    this.bid,
-    this.subBid,
-    this.profit,
+    this.date,
+    this.time,
+    this.price,
     this.color,
     super.key,
   });
@@ -188,57 +262,24 @@ class PriceDetailsWidget extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 8.w),
       decoration:
-          BoxDecoration(borderRadius: BorderRadius.circular(8.r), color: color),
+      BoxDecoration(borderRadius: BorderRadius.circular(8.r), color: color),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Padding(
             padding: EdgeInsets.only(left: 12.w),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  size ?? '',
-                  style: TextFontStyle.headline14w500cfffff,
-                ),
-                UIHelper.verticalSpace(4.h),
-                Text(
-                  subSize ?? '',
-                  style: TextFontStyle.headline14w500cfffff,
-                ),
-              ],
+            child: Text(
+              date ?? '',
+              style: TextFontStyle.headline14w500cfffff,
             ),
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                lowestAsk ?? '',
-                style: TextFontStyle.headline14w500cfffff,
-              ),
-              UIHelper.verticalSpace(4.h),
-              Text(
-                subLowestAsk ?? '',
-                style: TextFontStyle.headline14w500cfffff,
-              ),
-            ],
+          Text(
+            time ?? '',
+            style: TextFontStyle.headline14w500cfffff,
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                bid ?? '',
-                style: TextFontStyle.headline14w500cfffff,
-              ),
-              UIHelper.verticalSpace(4.h),
-              Text(
-                subBid ?? '',
-                style: TextFontStyle.headline14w500cfffff,
-              ),
-            ],
+          Text(
+            size ?? '',
+            style: TextFontStyle.headline14w500cfffff,
           ),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
@@ -247,46 +288,11 @@ class PriceDetailsWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(6.r),
             ),
             child: Text(
-              profit ?? '',
+              price ?? '',
               style: TextFontStyle.headline14w500cfffff
                   .copyWith(color: AppColors.c49C26A),
             ),
           )
-        ],
-      ),
-    );
-  }
-}
-
-class OrderHistoryChip extends StatelessWidget {
-  String? hours;
-  String? item;
-  OrderHistoryChip({
-    this.hours,
-    this.item,
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 34.h,
-      width: 85.w,
-      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
-      decoration: BoxDecoration(
-          color: AppColors.secondaryColor,
-          borderRadius: BorderRadius.circular(6.r)),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            hours ?? '',
-            style: TextFontStyle.headline14w400c919191
-                .copyWith(color: AppColors.c999999),
-          ),
-          Text(item ?? '',
-              style: TextFontStyle.headline14w400c919191
-                  .copyWith(color: AppColors.cFFFFFF)),
         ],
       ),
     );
@@ -328,6 +334,7 @@ class OrderIdWidget extends StatelessWidget {
 // ignore: must_be_immutable
 class PriceDiscountCard extends StatelessWidget {
   String? text;
+
   PriceDiscountCard({
     this.text,
     super.key,

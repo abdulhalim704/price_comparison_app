@@ -17,7 +17,7 @@ final class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
-  bool _isLoading = false;
+  bool _isLoading = true;
 
   @override
   void initState() {
@@ -25,7 +25,7 @@ class _LoadingState extends State<Loading> {
     super.initState();
   }
 
-  loadInitialData() async {
+  void loadInitialData() async {
     //AutoAppUpdateUtil.instance.checkAppUpdate();
     //await setInitValue();
     // await getAllShopCategoryRXObj.fetchAllShopCategoryData();
