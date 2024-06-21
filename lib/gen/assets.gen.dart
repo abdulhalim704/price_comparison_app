@@ -18,6 +18,14 @@ class $AssetsIconsGen {
   /// File path: assets/icons/Setting.png
   AssetGenImage get setting => const AssetGenImage('assets/icons/Setting.png');
 
+  /// File path: assets/icons/alias_logo.png
+  AssetGenImage get aliasLogo =>
+      const AssetGenImage('assets/icons/alias_logo.png');
+
+  /// File path: assets/icons/alias_logo_circle.png
+  AssetGenImage get aliasLogoCircle =>
+      const AssetGenImage('assets/icons/alias_logo_circle.png');
+
   /// File path: assets/icons/back_icon.png
   AssetGenImage get backIcon =>
       const AssetGenImage('assets/icons/back_icon.png');
@@ -62,6 +70,10 @@ class $AssetsIconsGen {
   AssetGenImage get refreshIcon =>
       const AssetGenImage('assets/icons/refresh_icon.png');
 
+  /// File path: assets/icons/stockx_logo.png
+  AssetGenImage get stockxLogo =>
+      const AssetGenImage('assets/icons/stockx_logo.png');
+
   /// File path: assets/icons/verified_icon.png
   AssetGenImage get verifiedIcon =>
       const AssetGenImage('assets/icons/verified_icon.png');
@@ -70,6 +82,8 @@ class $AssetsIconsGen {
   List<AssetGenImage> get values => [
         search,
         setting,
+        aliasLogo,
+        aliasLogoCircle,
         backIcon,
         calendar,
         copyIcon,
@@ -82,6 +96,7 @@ class $AssetsIconsGen {
         notification,
         printerIcon,
         refreshIcon,
+        stockxLogo,
         verifiedIcon
       ];
 }
@@ -91,6 +106,9 @@ class $AssetsImagesGen {
 
   /// File path: assets/images/Login.png
   AssetGenImage get login => const AssetGenImage('assets/images/Login.png');
+
+  /// File path: assets/images/alias.png
+  AssetGenImage get alias => const AssetGenImage('assets/images/alias.png');
 
   /// File path: assets/images/blue_shoes.png
   AssetGenImage get blueShoes =>
@@ -107,6 +125,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/shoes.png
   AssetGenImage get shoes => const AssetGenImage('assets/images/shoes.png');
 
+  /// File path: assets/images/stockx.png
+  AssetGenImage get stockx => const AssetGenImage('assets/images/stockx.png');
+
   /// File path: assets/images/travies_Scot_shoes.png
   AssetGenImage get traviesScotShoes =>
       const AssetGenImage('assets/images/travies_Scot_shoes.png');
@@ -122,10 +143,12 @@ class $AssetsImagesGen {
   /// List of all assets
   List<AssetGenImage> get values => [
         login,
+        alias,
         blueShoes,
         placeholderImage,
         retroShoes,
         shoes,
+        stockx,
         traviesScotShoes,
         universityBlueShoes,
         whiteMidShoes
