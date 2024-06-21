@@ -11,12 +11,22 @@ class ActionButton extends StatelessWidget {
   final String? iconName;
   final VoidCallback? onTap;
   final bool isSelect;
+  double? height;
+  double? width;
+  double horizontal;
+  double veritacl;
+  Color? color;
 
   ActionButton({
     this.buttonName,
     this.iconName,
     this.onTap,
     this.isSelect = false,
+    this.height,
+    this.width,
+    this.horizontal = 18,
+    this.veritacl = 10,
+    this.color,
     super.key,
   });
 
@@ -25,12 +35,17 @@ class ActionButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 10),
+        width: width,
+        height: height,
+        padding: EdgeInsets.symmetric(
+            horizontal: horizontal.w, vertical: veritacl.h),
         decoration: BoxDecoration(
-          color:isSelect == true ? AppColors.c9182E6 : AppColors.c262626,
+          color: color,
+          // color: isSelect == true ? AppColors.c9182E6 : AppColors.c262626,
           borderRadius: BorderRadius.circular(8.r),
         ),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               buttonName ?? '',

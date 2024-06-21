@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../common_widgets/action_button.dart';
 import '../../../constants/text_font_style.dart';
 import '../../../gen/assets.gen.dart';

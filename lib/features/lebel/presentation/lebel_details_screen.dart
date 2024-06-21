@@ -12,14 +12,14 @@ import '../../../gen/colors.gen.dart';
 import '../../../helpers/navigation_service.dart';
 import '../../../helpers/ui_helpers.dart';
 
-class LebelScreen extends StatefulWidget {
-  const LebelScreen({super.key});
+class LebelDetailsScreen extends StatefulWidget {
+  const LebelDetailsScreen({super.key});
 
   @override
-  State<LebelScreen> createState() => _LebelScreenState();
+  State<LebelDetailsScreen> createState() => _LebelDetailsScreenState();
 }
 
-class _LebelScreenState extends State<LebelScreen> {
+class _LebelDetailsScreenState extends State<LebelDetailsScreen> {
   final _controller = TextEditingController();
 
   bool _isCancel = false;
@@ -31,6 +31,7 @@ class _LebelScreenState extends State<LebelScreen> {
     return Scaffold(
       backgroundColor: AppColors.themeColor,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         actions: [
           AppBarActionButton(
             rightPadding: 10.w,
@@ -89,7 +90,7 @@ class _LebelScreenState extends State<LebelScreen> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 10.h, bottom: 76.h),
+              padding: EdgeInsets.only(top: 15.h, bottom: 15.h),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -103,6 +104,9 @@ class _LebelScreenState extends State<LebelScreen> {
                         log(_isCancel.toString());
                       });
                     },
+                    color: _isCancel == true
+                        ? AppColors.c9182E6
+                        : AppColors.c262626,
                     isSelect: _isCancel,
                   ),
                   ActionButton(
@@ -116,6 +120,8 @@ class _LebelScreenState extends State<LebelScreen> {
                       });
                     },
                     isSelect: _isShip,
+                    color:
+                        _isShip == true ? AppColors.c9182E6 : AppColors.c262626,
                   ),
                   ActionButton(
                     buttonName: 'Print',
@@ -129,6 +135,8 @@ class _LebelScreenState extends State<LebelScreen> {
                       });
                     },
                     isSelect: isPrint,
+                    color:
+                        isPrint == true ? AppColors.c9182E6 : AppColors.c262626,
                   )
                 ],
               ),

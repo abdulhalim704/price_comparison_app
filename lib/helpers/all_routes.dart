@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:price_comparison/features/authentication/presentation/login_screen.dart';
+import 'package:price_comparison/features/lebel/presentation/lebel_details_screen.dart';
+import 'package:price_comparison/features/lebel/presentation/lebels_screen.dart';
 import 'package:price_comparison/features/lebel/presentation/lebel_screen.dart';
 import 'package:price_comparison/features/search/presentation/product_details_graph.dart';
 import 'package:price_comparison/features/search/presentation/product_details_screen.dart';
@@ -19,6 +21,7 @@ final class Routes {
   static const String search = '/search';
   static const String setting = '/setting';
   static const String lebel = '/lebel';
+  static const String lebelDetails = '/lebelDetails';
   static const String productDetails = '/product_details';
   static const String productDetailsGraph = '/product_details_graph';
   static const String login = '/login';
@@ -44,12 +47,13 @@ final class RouteGenerator {
                 widget: const ScreenTitle(widget: SearchScreen()),
                 settings: settings)
             : CupertinoPageRoute(builder: (context) => const SearchScreen());
-      case Routes.lebel:
+      case Routes.lebelDetails:
         return Platform.isAndroid
             ? _FadedTransitionRoute(
-                widget: const ScreenTitle(widget: LebelScreen()),
+                widget: const ScreenTitle(widget: LebelDetailsScreen()),
                 settings: settings)
-            : CupertinoPageRoute(builder: (context) => const LebelScreen());
+            : CupertinoPageRoute(
+                builder: (context) => const LebelDetailsScreen());
       case Routes.setting:
         return Platform.isAndroid
             ? _FadedTransitionRoute(
@@ -83,6 +87,12 @@ final class RouteGenerator {
                 settings: settings)
             : CupertinoPageRoute(
                 builder: (context) => const NavigationScreen());
+      case Routes.lebel:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: const ScreenTitle(widget: LebelScreen()),
+                settings: settings)
+            : CupertinoPageRoute(builder: (context) => const LebelScreen());
 
       // case Routes.webview:
       //   final args = settings.arguments as Map;
