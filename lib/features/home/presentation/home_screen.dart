@@ -5,6 +5,8 @@ import 'package:price_comparison/constants/text_font_style.dart';
 import '../../../common_widgets/app_bar_action_button.dart';
 import '../../../gen/assets.gen.dart';
 import '../../../gen/colors.gen.dart';
+import '../../../helpers/all_routes.dart';
+import '../../../helpers/navigation_service.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -26,6 +28,9 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         actions: [
           AppBarActionButton(
+            onTap: () {
+              NavigationService.navigateTo(Routes.notification);
+            },
             containerColor: AppColors.c626262,
             child: Image.asset(
               Assets.icons.notification.path,

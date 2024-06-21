@@ -1,5 +1,4 @@
 import 'package:auto_animated/auto_animated.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -11,10 +10,7 @@ import 'constants/custome_theme.dart';
 import 'helpers/di.dart';
 import 'helpers/helper_methods.dart';
 import 'helpers/navigation_service.dart';
-import 'helpers/notification_service.dart';
 import 'helpers/register_provider.dart';
-import 'loading_screen.dart';
-import 'networks/dio/dio.dart';
 
 // Future<void> backgroundHandler(RemoteMessage message) async {}
 void main() async {

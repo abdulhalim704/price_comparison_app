@@ -1,12 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'constants/app_constants.dart';
-import 'helpers/app_version_updater.dart';
-import 'helpers/di.dart';
-import 'helpers/helper_methods.dart';
-import 'helpers/notification_service.dart';
 import 'navigation_screen.dart';
-import 'networks/dio/dio.dart';
 import 'welcome_screen.dart';
 
 final class Loading extends StatefulWidget {

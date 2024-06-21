@@ -3,7 +3,6 @@
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:price_comparison/features/lebel/presentation/lebel_details_screen.dart';
 import 'package:price_comparison/features/lebel/presentation/lebels_screen.dart';
 import 'package:price_comparison/features/setting/presentation/setting_screen.dart';
 

@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:price_comparison/features/graph/graph_1.dart';
 import 'package:price_comparison/features/graph/graph_2.dart';
 import 'package:price_comparison/helpers/navigation_service.dart';
-import 'package:price_comparison/helpers/toast.dart';
 import 'package:price_comparison/helpers/ui_helpers.dart';
-import 'package:provider/provider.dart';
-import 'package:flutter/services.dart';
 import '../../../constants/text_font_style.dart';
-import '../../../dummy_data/dummy_model.dart';
 import '../../../gen/assets.gen.dart';
 import '../../../gen/colors.gen.dart';
-import '../../../providers/stock_alice_provider.dart';
-import '../widget/price_heading.dart';
+import 'widget/order_id_widget.dart';
+import 'widget/price_discount_card.dart';
+import 'widget/stock_alias_select.dart';
 
 class ProductDetailsGraphScreen extends StatefulWidget {
   const ProductDetailsGraphScreen({super.key});
@@ -125,9 +121,17 @@ class _ProductDetailsGraphScreenState extends State<ProductDetailsGraphScreen> {
                   Container(
                     height: 8.w,
                     width: 8.w,
-                    decoration: const BoxDecoration(shape: BoxShape.circle, color: Color(0xFF5694D9),),
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Color(0xFF5694D9),
+                    ),
                   ),
-                  Flexible(child: Text('8 US | Payouts | StockX', style: TextFontStyle.headline14w400c919191.copyWith(color: Colors.white),))
+                  Flexible(
+                      child: Text(
+                    '8 US | Payouts | StockX',
+                    style: TextFontStyle.headline14w400c919191
+                        .copyWith(color: Colors.white),
+                  ))
                 ],
               ),
               AspectRatio(
@@ -135,9 +139,11 @@ class _ProductDetailsGraphScreenState extends State<ProductDetailsGraphScreen> {
                 child: Graph2(),
               ),
               UIHelper.verticalSpace(10.h),
+
               /// header of size date and price
-              SizeDatePriceHeader(),
+              const SizeDatePriceHeader(),
               UIHelper.verticalSpace(10.h),
+
               /// details or body of size date and price
               ListView.separated(
                 separatorBuilder: (context, index) {
@@ -182,7 +188,8 @@ class SizeDatePriceHeader extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 8.w),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8.r), border:  Border.all(color: AppColors.c1C1C1C)),
+          borderRadius: BorderRadius.circular(8.r),
+          border: Border.all(color: AppColors.c1C1C1C)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
@@ -207,7 +214,6 @@ class SizeDatePriceHeader extends StatelessWidget {
     );
   }
 }
-
 
 class TitleDetailsUiItem extends StatelessWidget {
   final String title, price;
@@ -244,6 +250,7 @@ class TitleDetailsUiItem extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class SizePriceDetailsItemUi extends StatelessWidget {
   String? size, date, time, price;
 
@@ -262,7 +269,7 @@ class SizePriceDetailsItemUi extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 8.w),
       decoration:
-      BoxDecoration(borderRadius: BorderRadius.circular(8.r), color: color),
+          BoxDecoration(borderRadius: BorderRadius.circular(8.r), color: color),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -294,64 +301,6 @@ class SizePriceDetailsItemUi extends StatelessWidget {
             ),
           )
         ],
-      ),
-    );
-  }
-}
-
-class OrderIdWidget extends StatelessWidget {
-  const OrderIdWidget({
-    super.key,
-    required this.textToCopy,
-  });
-
-  final String textToCopy;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Text(textToCopy,
-            style: TextFontStyle.headline14w400c919191
-                .copyWith(color: AppColors.c929292)),
-        UIHelper.horizontalSpace(4.w),
-        GestureDetector(
-          onTap: () {
-            Clipboard.setData(ClipboardData(text: textToCopy));
-            ToastUtil.showShortToast('Copied');
-          },
-          child: Image.asset(
-            Assets.icons.copyIcon.path,
-            width: 18.w,
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-// ignore: must_be_immutable
-class PriceDiscountCard extends StatelessWidget {
-  String? text;
-
-  PriceDiscountCard({
-    this.text,
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10),
-      decoration: BoxDecoration(
-        color: AppColors.c171717,
-        borderRadius: BorderRadius.circular(8.r),
-        border: Border.all(color: AppColors.c333333, width: 1.5.w),
-      ),
-      child: Text(
-        text ?? '',
-        style: TextFontStyle.headline15w400cB9B9B9,
       ),
     );
   }
@@ -416,67 +365,6 @@ class _DropdownButtonExampleState extends State<DropdownButtonExample> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class StockAliasSelectButton extends StatelessWidget {
-  const StockAliasSelectButton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Consumer<StockAliasProvider>(
-      builder: (context, provider, child) {
-        return Container(
-          padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 5.w),
-          height: 40.h,
-          decoration: BoxDecoration(
-            color: AppColors.c262626,
-            borderRadius: BorderRadius.circular(6.r),
-          ),
-          child: LayoutBuilder(builder: (context, constraints) {
-            double width = constraints.maxWidth;
-
-            return Stack(
-              alignment: Alignment.center,
-              children: [
-                AnimatedPositioned(
-                  left: provider.isSelected ? width / 2 : 0,
-                  duration: const Duration(milliseconds: 200),
-                  width: width / 2,
-                  child: Container(
-                    height: 30.h,
-                    width: width / 2,
-                    decoration: BoxDecoration(
-                      color: AppColors.c626262,
-                      borderRadius: BorderRadius.circular(6.r),
-                    ),
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    GestureDetector(
-                      onTap: provider.selectStock,
-                      child: Text(
-                        'StockX',
-                        style: TextFontStyle.headline12w500cffffff,
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: provider.selectAlias,
-                      child: Text(
-                        'Alias',
-                        style: TextFontStyle.headline12w500cffffff,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            );
-          }),
-        );
-      },
     );
   }
 }

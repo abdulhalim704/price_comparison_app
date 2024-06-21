@@ -9,25 +9,30 @@ class AppBarActionButton extends StatelessWidget {
   Widget? child;
   double? width;
   double? rightPadding;
+  VoidCallback? onTap;
   AppBarActionButton({
     this.child,
     this.containerColor,
     this.width = 40,
     this.rightPadding = 16,
+    this.onTap,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      width: width!.w,
-      margin: EdgeInsets.only(right: rightPadding!),
-      decoration: BoxDecoration(
-        color: containerColor,
-        shape: BoxShape.circle,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        alignment: Alignment.center,
+        width: width!.w,
+        margin: EdgeInsets.only(right: rightPadding!),
+        decoration: BoxDecoration(
+          color: containerColor,
+          shape: BoxShape.circle,
+        ),
+        child: child,
       ),
-      child: child,
     );
   }
 }

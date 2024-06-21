@@ -16,6 +16,7 @@ class ActionButton extends StatelessWidget {
   double horizontal;
   double veritacl;
   Color? color;
+  double? iconWidth;
 
   ActionButton({
     this.buttonName,
@@ -27,6 +28,7 @@ class ActionButton extends StatelessWidget {
     this.horizontal = 18,
     this.veritacl = 10,
     this.color,
+    this.iconWidth = 16,
     super.key,
   });
 
@@ -55,7 +57,7 @@ class ActionButton extends StatelessWidget {
               UIHelper.horizontalSpace(5.w),
               Image.asset(
                 iconName!,
-                width: 16.w,
+                width: iconWidth,
               ),
             ],
           ],

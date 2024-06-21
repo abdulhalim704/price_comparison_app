@@ -38,6 +38,10 @@ class $AssetsIconsGen {
   AssetGenImage get copyIcon =>
       const AssetGenImage('assets/icons/copy_icon.png');
 
+  /// File path: assets/icons/delete_icon.png
+  AssetGenImage get deleteIcon =>
+      const AssetGenImage('assets/icons/delete_icon.png');
+
   /// File path: assets/icons/discord_logo.png
   AssetGenImage get discordLogo =>
       const AssetGenImage('assets/icons/discord_logo.png');
@@ -47,6 +51,10 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/home.png
   AssetGenImage get home => const AssetGenImage('assets/icons/home.png');
+
+  /// File path: assets/icons/info_bulk.png
+  AssetGenImage get infoBulk =>
+      const AssetGenImage('assets/icons/info_bulk.png');
 
   /// File path: assets/icons/label.png
   AssetGenImage get label => const AssetGenImage('assets/icons/label.png');
@@ -87,9 +95,11 @@ class $AssetsIconsGen {
         backIcon,
         calendar,
         copyIcon,
+        deleteIcon,
         discordLogo,
         heart,
         home,
+        infoBulk,
         label,
         logo,
         logoutIcon,
