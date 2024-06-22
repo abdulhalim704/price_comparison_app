@@ -6,6 +6,7 @@ import '../../../../gen/assets.gen.dart';
 import '../../../../gen/colors.gen.dart';
 import '../../../../helpers/ui_helpers.dart';
 
+// ignore: must_be_immutable
 class SearchProductCard extends StatelessWidget {
   String? productImage;
   String? productTitle;
@@ -32,7 +33,7 @@ class SearchProductCard extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            width: 160.w,
+            width: 165.w,
             decoration: BoxDecoration(
                 color: AppColors.c1C1C1C,
                 borderRadius: BorderRadius.circular(8.r)),

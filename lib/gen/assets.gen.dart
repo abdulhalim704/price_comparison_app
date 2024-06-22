@@ -46,6 +46,14 @@ class $AssetsIconsGen {
   AssetGenImage get discordLogo =>
       const AssetGenImage('assets/icons/discord_logo.png');
 
+  /// File path: assets/icons/down_drop_down_icon.png
+  AssetGenImage get downDropDownIcon =>
+      const AssetGenImage('assets/icons/down_drop_down_icon.png');
+
+  /// File path: assets/icons/drop_down_icon.png
+  AssetGenImage get dropDownIcon =>
+      const AssetGenImage('assets/icons/drop_down_icon.png');
+
   /// File path: assets/icons/heart.png
   AssetGenImage get heart => const AssetGenImage('assets/icons/heart.png');
 
@@ -97,6 +105,8 @@ class $AssetsIconsGen {
         copyIcon,
         deleteIcon,
         discordLogo,
+        downDropDownIcon,
+        dropDownIcon,
         heart,
         home,
         infoBulk,
@@ -124,6 +134,10 @@ class $AssetsImagesGen {
   AssetGenImage get blueShoes =>
       const AssetGenImage('assets/images/blue_shoes.png');
 
+  /// File path: assets/images/graph_image.png
+  AssetGenImage get graphImage =>
+      const AssetGenImage('assets/images/graph_image.png');
+
   /// File path: assets/images/placeholder_image.jpeg
   AssetGenImage get placeholderImage =>
       const AssetGenImage('assets/images/placeholder_image.jpeg');
@@ -137,6 +151,10 @@ class $AssetsImagesGen {
 
   /// File path: assets/images/stockx.png
   AssetGenImage get stockx => const AssetGenImage('assets/images/stockx.png');
+
+  /// File path: assets/images/total_banner.png
+  AssetGenImage get totalBanner =>
+      const AssetGenImage('assets/images/total_banner.png');
 
   /// File path: assets/images/travies_Scot_shoes.png
   AssetGenImage get traviesScotShoes =>
@@ -155,10 +173,12 @@ class $AssetsImagesGen {
         login,
         alias,
         blueShoes,
+        graphImage,
         placeholderImage,
         retroShoes,
         shoes,
         stockx,
+        totalBanner,
         traviesScotShoes,
         universityBlueShoes,
         whiteMidShoes

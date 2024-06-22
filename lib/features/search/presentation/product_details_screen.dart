@@ -1,24 +1,19 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:price_comparison/helpers/all_routes.dart';
 import 'package:price_comparison/helpers/navigation_service.dart';
-import 'package:price_comparison/helpers/toast.dart';
 import 'package:price_comparison/helpers/ui_helpers.dart';
-import 'package:provider/provider.dart';
-import 'package:flutter/services.dart';
 import '../../../constants/text_font_style.dart';
 import '../../../dummy_data/dummy_model.dart';
 import '../../../gen/assets.gen.dart';
 import '../../../gen/colors.gen.dart';
-import '../../../providers/stock_alice_provider.dart';
+import 'product_details_graph.dart';
 import 'widget/order_history_chip_widget.dart';
 import 'widget/order_id_widget.dart';
 import 'widget/price_details_widget.dart';
 import 'widget/price_discount_card.dart';
 import 'widget/price_heading.dart';
-import 'product_details_graph.dart';
 import 'widget/stock_alias_select.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
@@ -36,7 +31,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
       backgroundColor: AppColors.themeColor,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text('Product Details Screen'),
+        title: const Text('Product Details'),
         actions: [
           Padding(
             padding: EdgeInsets.only(right: 25.sp),
@@ -134,12 +129,11 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 itemCount: 10,
                 itemBuilder: (context, index) {
                   return GestureDetector(
-                    onTap: (){
+                    onTap: () {
                       log('index is $index');
                       NavigationService.navigateTo(Routes.productDetailsGraph);
                     },
                     child: PriceDetailsWidget(
-
                       size: '5',
                       subSize: '35.5',
                       lowestAsk: '107€',
@@ -167,9 +161,3 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     }
   }
 }
-
-
-
-
-
-

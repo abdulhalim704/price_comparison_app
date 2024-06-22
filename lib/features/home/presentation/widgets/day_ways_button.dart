@@ -10,11 +10,11 @@ class StockAliasSelectButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<StockAliasProvider>(
-      builder: (context, provider, child) {
+    return Consumer<DayWaysProvider>(
+      builder: (context, setProvider, child) {
         return Container(
           padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 5.w),
-          height: 40.h,
+          // height: 40.h,
           decoration: BoxDecoration(
             color: AppColors.c262626,
             borderRadius: BorderRadius.circular(6.r),
@@ -26,12 +26,16 @@ class StockAliasSelectButton extends StatelessWidget {
               alignment: Alignment.center,
               children: [
                 AnimatedPositioned(
-                  left: provider.isSelected ? width / 2 : 0,
+                  left: setProvider.index == 2
+                      ? 2 * width / 3
+                      : setProvider.index == 1
+                          ? width / 3
+                          : 0,
                   duration: const Duration(milliseconds: 200),
-                  width: width / 2,
+                  width: width / 3,
                   child: Container(
                     height: 30.h,
-                    width: width / 2,
+                    width: width / 5,
                     decoration: BoxDecoration(
                       color: AppColors.c626262,
                       borderRadius: BorderRadius.circular(6.r),
@@ -42,17 +46,38 @@ class StockAliasSelectButton extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     GestureDetector(
-                      onTap: provider.selectStock,
-                      child: Text(
-                        'StockX',
-                        style: TextFontStyle.headline12w500cffffff,
+                      onTap: () => setProvider.setSelection(0),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 16.w, vertical: 8.h),
+                        child: Text(
+                          '1 Day',
+                          style: TextFontStyle.headline12w500cffffff,
+                        ),
                       ),
                     ),
+
                     GestureDetector(
-                      onTap: provider.selectAlias,
-                      child: Text(
-                        'Alias',
-                        style: TextFontStyle.headline12w500cffffff,
+                      onTap: () => setProvider.setSelection(1),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 16.w, vertical: 8.h),
+                        child: Text(
+                          '30Day',
+                          style: TextFontStyle.headline12w500cffffff,
+                        ),
+                      ),
+                    ),
+                    
+                    GestureDetector(
+                      onTap: () => setProvider.setSelection(2),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 16.w, vertical: 8.h),
+                        child: Text(
+                          'Total',
+                          style: TextFontStyle.headline12w500cffffff,
+                        ),
                       ),
                     ),
                   ],
