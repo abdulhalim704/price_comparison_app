@@ -5,33 +5,26 @@ import 'dart:io';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:provider/provider.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
-import '../gen/colors.gen.dart';
+
 import '/helpers/di.dart';
 import '/helpers/toast.dart';
-
 import '../constants/app_constants.dart';
-
 import '../constants/text_font_style.dart';
-
 
 //final appData = locator.get<GetStorage>();
 
 //declared for cart scrren calling bottom shit with this from reorder rx
 final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-final GlobalKey<PopupMenuButtonState<String>> popUpGlobalkey = GlobalKey<PopupMenuButtonState<String>>();
+final GlobalKey<PopupMenuButtonState<String>> popUpGlobalkey =
+    GlobalKey<PopupMenuButtonState<String>>();
 
 enum StatusType { order, delivery }
-
 
 Future<String?> networkImageToBase64(String imageUrl) async {
   http.Response response = await http.get(Uri.parse(imageUrl));
@@ -57,9 +50,11 @@ Future<void> setInitValue() async {
   var deviceInfo = DeviceInfoPlugin();
   if (Platform.isIOS) {
     var iosDeviceInfo = await deviceInfo.iosInfo;
-    appData.writeIfNull(kKeyDeviceID, iosDeviceInfo.identifierForVendor); // unique ID on iOS
+    appData.writeIfNull(
+        kKeyDeviceID, iosDeviceInfo.identifierForVendor); // unique ID on iOS
   } else if (Platform.isAndroid) {
-    var androidDeviceInfo = await deviceInfo.androidInfo; // unique ID on Android
+    var androidDeviceInfo =
+        await deviceInfo.androidInfo; // unique ID on Android
     appData.writeIfNull(kKeyDeviceID, androidDeviceInfo.id);
   }
   await Future.delayed(const Duration(seconds: 2));
@@ -83,7 +78,8 @@ setLocationLatLong(LatLng latLng, {bool? selectedLocation = false}) async {
 
 Future<void> initiInternetChecker() async {
   InternetConnectionChecker.createInstance(
-          checkTimeout: const Duration(seconds: 1), checkInterval: const Duration(seconds: 2))
+          checkTimeout: const Duration(seconds: 1),
+          checkInterval: const Duration(seconds: 2))
       .onStatusChange
       .listen((status) {
     switch (status) {
@@ -186,45 +182,44 @@ void showMaterialDialog(
   BuildContext context,
 ) {
   showDialog<bool>(
-      context: context,
-      builder: (context) => AlertDialog(
-            title: Text(
-              "Do you want to exit the app?",
-              textAlign: TextAlign.center,
-              style: TextFontStyle.headline14StyleMontserrat,
-            ),
-            actions: <Widget>[
-              // customeButton(
-              //     name: "No".tr,
-              //     onCallBack: () {
-              //       Navigator.of(context).pop(false);
-              //     },
-              //     height: 30.sp,
-              //     minWidth: .3.sw,
-              //     borderRadius: 30.r,
-              //     color: AppColors.cF0F0F0,
-              //     textStyle: GoogleFonts.montserrat(
-              //         fontSize: 17.sp, color: AppColors.allPrimaryColor, fontWeight: FontWeight.w700),
-              //     context: context),
-              // customeButton(
-              //     name: "Yes".tr,
-              //     onCallBack: () {
-              //       if (Platform.isAndroid) {
-              //         SystemNavigator.pop();
-              //       } else if (Platform.isIOS) {
-              //         exit(0);
-              //       }
-              //     },
-              //     height: 30.sp,
-              //     minWidth: .3.sw,
-              //     borderRadius: 30.r,
-              //     color: AppColors.allPrimaryColor,
-              //     textStyle: GoogleFonts.montserrat(fontSize: 17.sp, color: Colors.white, fontWeight: FontWeight.w700),
-              //     context: context),
-            
-            
-            ],
-          ));
+    context: context,
+    builder: (context) => AlertDialog(
+      title: Text(
+        "Do you want to exit the app?",
+        textAlign: TextAlign.center,
+        style: TextFontStyle.headline14StyleMontserrat,
+      ),
+      actions: <Widget>[
+        // customeButton(
+        //     name: "No".tr,
+        //     onCallBack: () {
+        //       Navigator.of(context).pop(false);
+        //     },
+        //     height: 30.sp,
+        //     minWidth: .3.sw,
+        //     borderRadius: 30.r,
+        //     color: AppColors.cF0F0F0,
+        //     textStyle: GoogleFonts.montserrat(
+        //         fontSize: 17.sp, color: AppColors.allPrimaryColor, fontWeight: FontWeight.w700),
+        //     context: context),
+        // customeButton(
+        //     name: "Yes".tr,
+        //     onCallBack: () {
+        //       if (Platform.isAndroid) {
+        //         SystemNavigator.pop();
+        //       } else if (Platform.isIOS) {
+        //         exit(0);
+        //       }
+        //     },
+        //     height: 30.sp,
+        //     minWidth: .3.sw,
+        //     borderRadius: 30.r,
+        //     color: AppColors.allPrimaryColor,
+        //     textStyle: GoogleFonts.montserrat(fontSize: 17.sp, color: Colors.white, fontWeight: FontWeight.w700),
+        //     context: context),
+      ],
+    ),
+  );
 }
 
 void rotation() {

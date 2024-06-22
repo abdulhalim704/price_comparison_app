@@ -6,4 +6,7 @@ var providers = [
   ChangeNotifierProvider<StockAliasProvider>(
     create: (context) => StockAliasProvider(),
   ),
+  ChangeNotifierProvider<DayWaysProvider>(
+    create: (context) => DayWaysProvider(),
+  ),
 ];

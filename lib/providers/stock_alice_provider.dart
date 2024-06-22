@@ -25,3 +25,12 @@ class StockAliasProvider with ChangeNotifier {
     notifyListeners();
   }
 }
+
+class DayWaysProvider with ChangeNotifier {
+  int index = 0;
+
+  void setSelection(int selectedIndex) {
+    index = selectedIndex;
+    notifyListeners();
+  }
+}

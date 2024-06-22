@@ -27,7 +27,7 @@ class _ProductDetailsGraphScreenState extends State<ProductDetailsGraphScreen> {
       backgroundColor: AppColors.themeColor,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text('Product Details Screen'),
+        title: const Text('Product Details'),
         actions: [
           Padding(
             padding: EdgeInsets.only(right: 25.sp),

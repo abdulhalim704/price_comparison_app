@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../constants/text_font_style.dart';
 import '../gen/colors.gen.dart';
 
+// ignore: must_be_immutable
 class SearchWidget extends StatelessWidget {
   SearchWidget({
     super.key,
